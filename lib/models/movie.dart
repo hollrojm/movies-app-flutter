@@ -40,8 +40,9 @@ class Movie {
   }
 
   get fullBackDropPath {
-    if (posterPath != null)
+    if (backdropPath != null) {
       return 'https://image.tmdb.org/t/p/w500$backdropPath';
+    }
 
     return 'https://847395.smushcdn.com/1790738/wp-content/uploads/2015/09/imagen-no-encontrada.jpg?lossy=1&strip=1&webp=1';
   }
