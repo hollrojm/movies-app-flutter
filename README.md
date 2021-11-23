@@ -1,5 +1,9 @@
 # films_app
 
+
+
+![Screenshot](https://github.com/hollrojm/movies-app-flutter/blob/master/assets/ejApp.png?raw=true)
+
 A new Flutter project.
 
 ## Getting Started
