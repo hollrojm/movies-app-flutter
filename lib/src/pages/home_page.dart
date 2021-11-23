@@ -1,3 +1,4 @@
+import 'package:films_app/search/search_delegate.dart';
 import 'package:films_app/src/providers/movies_provider.dart';
 import 'package:films_app/src/widgets/widgets.dart';
 import 'package:flutter/material.dart';
@@ -18,9 +19,10 @@ class HomePage extends StatelessWidget {
           elevation: 0,
           actions: [
             IconButton(
-              onPressed: () {},
-              icon: const Icon(Icons.search_outlined),
-            )
+              icon: Icon(Icons.search_outlined),
+              onPressed: () =>
+                  showSearch(context: context, delegate: MovieSearchDelegate()),
+            ),
           ],
         ),
         body: SingleChildScrollView(

@@ -1,5 +1,6 @@
 import 'package:films_app/models/models.dart';
 import 'package:films_app/models/now_playing_response.dart';
+import 'package:films_app/models/search_movie_response.dart';
 import 'package:flutter/cupertino.dart';
 
 import 'package:http/http.dart' as http;
@@ -22,7 +23,7 @@ class MoviesProvaider extends ChangeNotifier {
   }
 
   Future<String> _getJsonData(String endPoint, [int page = 1]) async {
-    var url = Uri.http(_baseUrl, endPoint,
+    final url = Uri.http(_baseUrl, endPoint,
         {'api_key': _apiKey, 'language': _language, 'page': '$page'});
     final response = await http.get(url);
     return response.body;
@@ -46,12 +47,20 @@ class MoviesProvaider extends ChangeNotifier {
   Future<List<Cast>> getMovieCast(int movieId) async {
     if (moviesCast.containsKey(movieId)) return moviesCast[movieId]!;
 
-    print('pidiedno info de los actores');
     final jsonData = await _getJsonData('3/movie/$movieId/credits');
 
     final creditsResponse = CreditsResponse.fromJson(jsonData);
 
     moviesCast[movieId] = creditsResponse.cast;
     return creditsResponse.cast;
+  }
+
+  Future<List<Movie>> searchMovie(String query) async {
+    final url = Uri.http(_baseUrl, '3/search/movie',
+        {'api_key': _apiKey, 'language': _language, 'query': query});
+    final response = await http.get(url);
+    final searchMovieResponse = SearchMovieResponse.fromJson(response.body);
+
+    return searchMovieResponse.results;
   }
 }
