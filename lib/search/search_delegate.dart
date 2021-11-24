@@ -76,7 +76,7 @@ class _MovieItem extends StatelessWidget {
         tag: movie.heroId!,
         child: FadeInImage(
           image: NetworkImage(movie.fullPosterImg),
-          placeholder: const AssetImage(' assets/no-image.jpg '),
+          placeholder: const AssetImage('assets/no-image.jpg'),
           width: 90,
           fit: BoxFit.contain,
         ),
